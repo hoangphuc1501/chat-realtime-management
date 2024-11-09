@@ -1,0 +1,69 @@
+extends ../../layouts/default.pug
+block main
+    .container
+        .login-form-list
+            form(
+                action="/users/register"
+                method="POST"
+                )
+                .form
+                    h3
+                        .heading Đăng Ký
+                    .form-group
+                        input(
+                            class="form-control"
+                            name="email"
+                            id="email"
+                            type="text" 
+                            placeholder="Email"
+                            required
+                            )
+                        label(for="email")
+                            i.fa-solid.fa-envelope
+                        span.form-message
+                    .form-group
+                        input(
+                            class="form-control"
+                            name="fullName"
+                            id="fullName" 
+                            type="text" 
+                            placeholder="Họ & Tên"
+                            required
+                            )
+                        label(for="fullName")
+                            i.fa-solid.fa-user
+                        span.form-message
+                    .form-group
+                        input(
+                            class="form-control"
+                            name="phone"
+                            id="phone"
+                            type="text" 
+                            placeholder="Số điện thoại")
+                        label(for="phone")
+                            i.fa-solid.fa-phone
+                        span.form-message
+                    .form-group
+                        input(
+                            class="form-control"
+                            name="password"
+                            id="password" 
+                            type="password" 
+                            placeholder="Nhập mật khẩu"
+                            required
+                            )
+                        label(for="password")
+                            i.fa-solid.fa-lock
+                        span#errPass1.form-message
+                    button.form-submit( type="submit") Đăng ký
+                    p hoặc sử dụng tài khoản của bạn
+                    .form-account
+                        a(href="#")
+                            i.fa-brands.fa-facebook
+                        a(href="#")
+                            i.fa-solid.fa-g
+                        a(href="#")
+                            i.fa-brands.fa-twitter
+                    .tab.display-flex
+                        p Bạn đã có tài khoản?
+                        a(href="/user/login") Đăng nhập
