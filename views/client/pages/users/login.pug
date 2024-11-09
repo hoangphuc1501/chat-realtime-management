@@ -1,0 +1,52 @@
+extends ../../layouts/default.pug
+block main
+    .container
+        .login-form-list
+            form(
+                action="/users/login"
+                method="POST"
+                )
+                .form
+                    h3
+                        .heading Đăng nhập
+                    .form-group
+                        input(
+                            class="form-control"
+                            name="email"
+                            id="email"
+                            type="text" 
+                            placeholder="Email"
+                            required
+                            )
+                        label(for="email")
+                            i.fa-solid.fa-envelope
+                        span.form-message
+                    .form-group
+                        input(
+                            class="form-control"
+                            name="password"
+                            id="password" 
+                            type="password" 
+                            placeholder="Nhập mật khẩu"
+                            required
+                            )
+                        label(for="password")
+                            i.fa-solid.fa-lock
+                        span#errPass1.form-message
+                    .form-remember
+                        label(for="#")
+                            input(type="checkbox" name="" id="")
+                            | Nhớ mật khẩu
+                        a(href="/user/password/forgot") Quên mật khẩu?
+                    button.form-submit(type="submit") Đăng nhập
+                    p hoặc sử dụng tài khoản của bạn
+                    .form-account
+                        a(href="#")
+                            i.fa-brands.fa-facebook
+                        a(href="#")
+                            i.fa-solid.fa-g
+                        a(href="#")
+                            i.fa-brands.fa-twitter
+                    .tab.display-flex
+                        p Bạn chưa có tài khoản?
+                        a(href="/user/register") Đăng ký
