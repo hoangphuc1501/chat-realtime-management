@@ -4,7 +4,10 @@
     font-family: "Be Vietnam Pro", sans-serif;
     box-sizing: border-box;
 }
-
+:root {
+    --main-color: #e95211;
+    --text-color: #231f20;
+}
 body{
     padding: 0;
     margin: 0;
@@ -15,6 +18,154 @@ body{
     width: 1200px;
     margin: 0 auto;
 }
+.header {
+    width: 100%;
+    height: 140px;
+    position: relative;
+}
+
+/* header top */
+.header-top {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+
+.header-top-sub {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* logo */
+.logo {
+    width: 100px;
+    height: 60px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* tìm kiếm */
+.form-search {
+    width: 430px;
+    height: 45px;
+    /* border: 1px solid black; */
+    position: relative;
+}
+
+.form-search input {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid var(--main-color);
+    outline: none;
+}
+
+.form-search button {
+    position: absolute;
+    height: 100%;
+    width: 45px;
+    /* padding: 6px 10px; */
+    top: 0px;
+    right: 0px;
+    border-radius: 0 10px 10px 0;
+    background: #e95211;
+    border: none;
+    color: var(--white-color);
+}
+/* box hea */
+.box-hea {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-hea:hover .box-hea-sub {
+    display: block;
+}
+
+.box-hea a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.box-hea a:hover {
+    color: var(--main-color);
+}
+
+.box-hea .box-icon {
+    font-size: 16px;
+    color: var(--main-color);
+    border: 1px solid #dddddd;
+    padding: 4px 8px;
+    border-radius: 50%;
+}
+
+.box-hea .item-title {
+    margin-top: 2px;
+}
+
+.button-consult button {
+    /* padding: 10px 10px; */
+    border-radius: 45px;
+    background: linear-gradient(30deg, #f57f20, #d62b08 100%);
+    border: none;
+    color: var(--white-color);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 10px;
+    width: 120px;
+    height: 45px;
+}
+
+.box-hea-sub {
+    position: absolute;
+    padding: 0;
+    top: 75px;
+    /* left: 200px; */
+    list-style: none;
+    width: 180px;
+    height: 75px;
+    border-radius: 10px;
+    background: var(--white-color);
+    display: none;
+    box-shadow: 0 0 5px rgb(35, 31, 32, 0.5);
+    z-index: 999;
+}
+
+.box-hea-sub li a {
+    /* margin-top: 10px; */
+    display: block;
+    text-align: center;
+    padding: 8px 5px;
+    font-size: 14px;
+}
+
+.box-hea-sub li a:hover {
+    background: var(--main-color);
+    border-radius: 10px;
+    color: var(--white-color);
+}
+
+.box-hea-sub li a i {
+    margin-right: 3px;
+}
+
+/* end header top */
 
 /* Đăng ký đăng nhập */
 .login-form-list {

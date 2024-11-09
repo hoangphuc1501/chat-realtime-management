@@ -1,0 +1,65 @@
+header.header
+    .header-top
+        .container.header-top-sub
+            .logo
+                a(href="/")
+                    img(src="", alt="logo")
+            form.form-search(
+                action="/products/search"
+                method="get"
+                )
+                input(
+                    type="text" 
+                    placeholder="Tìm sản phẩm..."
+                    name="keyword"
+                    value=keyword
+                    input-focus
+                )
+                button
+                    i.bi.bi-search
+            .box-hea
+                a(href="#")
+                    span.box-icon
+                        i.bi.bi-receipt-cutoff
+                    span.item-title Tra cứu
+                ul.box-hea-sub
+                    li
+                        a(href="#") Kiểm tra đơn hàng
+                    li
+                        a(href="#") Kiểm tra bảo hành
+            .box-hea
+                a(href="#")
+                    span.box-icon
+                        i.bi.bi-person-fill
+                    span.item-title Tài khoản
+                ul.box-hea-sub
+                    if (!user)
+                        li
+                            a(href="/users/login")
+                                i.bi.bi-box-arrow-in-right
+                                | Đăng nhập
+                        li
+                            a(href="/users/register")
+                                i.bi.bi-person-fill-add
+                                | Đăng ký
+                    else 
+                        li
+                            a(href="/users/profile")
+                                i.bi.bi-person-fill
+                                | #{user.fullName}
+                        li
+                            a(href="/users/logout")
+                                i.bi.bi-box-arrow-in-left
+                                | Đăng xuất
+            .box-hea
+                a(href="/products/favorite")
+                    span.box-icon
+                        i.bi.bi-heart-fill
+                    span.item-title Yêu thích
+            .box-hea
+                a(href="/cart")
+                    span.box-icon
+                        i.bi.bi-cart-plus
+                    span.item-title Giỏ hàng
+            .button-consult
+                button Tư vấn ngay
