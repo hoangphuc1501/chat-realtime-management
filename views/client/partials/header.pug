@@ -52,10 +52,11 @@ header.header
                                 i.bi.bi-box-arrow-in-left
                                 | Đăng xuất
             .box-hea
-                a(href="/products/favorite")
-                    span.box-icon
-                        i.bi.bi-heart-fill
-                    span.item-title Yêu thích
+                if (user)
+                    a(href="/chat")
+                        span.box-icon
+                            i.bi.bi-heart-fill
+                        span.item-title Chat
             .box-hea
                 a(href="/cart")
                     span.box-icon
