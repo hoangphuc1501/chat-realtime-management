@@ -1,9 +1,32 @@
+const Chat = require("../../models/chat.model");
+const User = require("../../models/user.model");
 module.exports.index = async (req, res) => {
-    _io.on('connection', (socket) => {
-        console.log('Có 1 user kết nối', socket.id) ;
-    
+    _io.once('connection', (socket) => {
+        // người dùng gửi tin nhắn lên server
+        socket.on("CLIENT_SEND_MESSAGE", async (data) => {
+            const dataChat = {
+                userId:  res.locals.user.id,
+                // roomChatId: String,
+                content: data.content
+                // images: Array
+            }
+            // lưu tin nhắn vào database
+            const chat = new Chat(dataChat);
+            await chat.save();
+        })
     });
-    res.render("client/pages/chats/index.pug",{
-        pageTitle: "chat"
+    // lấy tin nhắn mặc định
+    const chats = await Chat.find({
+        deleted: false
+    })
+    for (const chat of chats) {
+        const infoUser = await User.findOne({
+            _id: chat.userId
+        })
+        chat.fullName = infoUser.fullName;
+    }
+    res.render("client/pages/chats/index.pug", {
+        pageTitle: "chat",
+        chats: chats
     });
 }

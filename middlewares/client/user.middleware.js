@@ -30,5 +30,6 @@ module.exports.profile = async (req, res, next) => {
         res.redirect("user/login");
         return;
     }
+    res.locals.user = user
     next();
 }
