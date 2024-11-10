@@ -4,11 +4,13 @@
     font-family: "Be Vietnam Pro", sans-serif;
     box-sizing: border-box;
 }
+
 :root {
     --main-color: #e95211;
     --text-color: #231f20;
 }
-body{
+
+body {
     padding: 0;
     margin: 0;
     font-size: 16px;
@@ -18,6 +20,7 @@ body{
     width: 1200px;
     margin: 0 auto;
 }
+
 .header {
     width: 100%;
     height: 140px;
@@ -49,7 +52,6 @@ body{
     height: 100%;
 }
 
-
 /* tìm kiếm */
 .form-search {
     width: 430px;
@@ -80,6 +82,7 @@ body{
     border: none;
     color: var(--white-color);
 }
+
 /* box hea */
 .box-hea {
     width: 70px;
@@ -180,9 +183,10 @@ body{
 
 .tab a {
     cursor: pointer;
-    color: #0D6EFD;
+    color: #0d6efd;
 }
-.tab a:hover{
+
+.tab a:hover {
     color: var(--main-color);
 }
 
@@ -271,7 +275,6 @@ body{
     border-color: #1dbfaf;
 }
 
-
 .form-group .form-message {
     color: #f33a58;
 }
@@ -322,9 +325,11 @@ body{
     color: #000000;
     text-decoration: none;
 }
-.form-remember a:hover{
+
+.form-remember a:hover {
     color: var(--main-color);
 }
+
 /* hết Đăng ký đăng nhập */
 
 /* alert-message */
@@ -334,4 +339,66 @@ body{
     right: 20px;
     z-index: 9999;
 }
+
 /* hết alert-message */
+
+/* chat */
+.chat {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.chat .inner-body {
+    padding: 10px;
+}
+
+.chat .inner-body .inner-name {
+    font-weight: 600;
+}
+
+.chat .inner-body .inner-content {
+    background: #f1f1f1;
+    margin-bottom: 10px;
+    max-width: 220px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    line-height: 1.4;
+}
+
+.chat .inner-outgoing .inner-content {
+    margin-left: auto;
+    background: #fe5da3;
+    color: #fff;
+}
+
+.chat .inner-foot {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+}
+
+.chat .inner-form {
+    display: flex;
+    align-items: center;
+}
+
+.chat .inner-form input {
+    flex: 1;
+    height: 32px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 0 10px;
+    outline: none;
+}
+
+.chat .inner-form button {
+    border-radius: 15px;
+    border: 1px solid #fe5da3;
+    background: #fe5da3;
+    color: #fff;
+    height: 32px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+/* End chat */
