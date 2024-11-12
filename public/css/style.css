@@ -383,6 +383,7 @@ body {
 .chat .inner-form {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .chat .inner-form input {
@@ -404,4 +405,16 @@ body {
     cursor: pointer;
 }
 
+.tooltip {
+    z-index: -1;
+
+}
+.tooltip.show {
+    z-index: 999;
+}
+emoji-picker{
+    position: absolute;
+    bottom: 45px;
+    right: -50px;
+}
 /* End chat */
