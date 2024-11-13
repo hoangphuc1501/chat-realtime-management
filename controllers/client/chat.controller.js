@@ -21,6 +21,14 @@ module.exports.index = async (req, res) => {
                 content: data.content
             })
         })
+        // CLIENT_SEND_TYPING
+        socket.on("CLIENT_SEND_TYPING", async (type) => {
+            socket.broadcast.emit("SERVER_RETURN_TYPING", {
+                userId:  res.locals.user.id,
+                fullName: res.locals.user.fullName,
+                type: type
+            });
+        })
     });
     // lấy tin nhắn mặc định
     const chats = await Chat.find({

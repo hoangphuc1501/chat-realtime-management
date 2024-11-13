@@ -36,7 +36,9 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
         ${htmlFullName}
         <div class="inner-content">${data.content}</div>
     `;
-    body.appendChild(div);
+    const elementListTyping = document.querySelector(".chat .inner-list-typing")
+    body.insertBefore(div, elementListTyping) ;
+    socket.emit("CLIENT_SEND_TYPING", false);
     body.scrollTop = body.scrollHeight;
 })
 // hết SERVER_RETURN_MESSAGE
@@ -50,7 +52,7 @@ if (bodyChat) {
 
 // show icon
 const emojiPicker = document.querySelector('emoji-picker');
-if(emojiPicker){
+if (emojiPicker) {
     const buttonIcon = document.querySelector(".chat .inner-form .button-icon");
     const tooltip = document.querySelector('.tooltip');
     Popper.createPopper(buttonIcon, tooltip);
@@ -62,9 +64,46 @@ if(emojiPicker){
         inputChat.value = inputChat.value + event.detail.unicode;
         console.log(event.detail.unicode)
     });
+    var timeOutTyping;
+    inputChat.addEventListener("keyup", () => {
+        socket.emit("CLIENT_SEND_TYPING", true);
+
+        clearTimeout(timeOutTyping);
+
+        timeOutTyping = setTimeout(() => {
+            socket.emit("CLIENT_SEND_TYPING", false);
+        }, 3000)
+    })
 }
 // hết show icon
 
-// tooltip
+// SERVER_RETURN_TYPING
+const elementListTyping = document.querySelector(".chat .inner-list-typing")
+if (elementListTyping) {
+    socket.on("SERVER_RETURN_TYPING", (data) => {
+        if (data.type) {
+            const existTyping = elementListTyping.querySelector(`.box-typing[user-id = "${data.userId}"]`)
+            if (!existTyping) {
+                const boxTyping = document.createElement("div");
+                boxTyping.classList.add("box-typing");
+                boxTyping.setAttribute("user-id", data.userId);
+                boxTyping.innerHTML = `
+                    <div class="inner-name">${data.fullName}</div>
+                    <div class="inner-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                `
+                elementListTyping.appendChild(boxTyping)
+            }
+        } else {
+            const existBoxTyping = elementListTyping.querySelector(`.box-typing[user-id="${data.userId}"]`);
+            if(existBoxTyping){
+                elementListTyping.removeChild(existBoxTyping);
+            }
+        }
+    })
+}
 
-// hết tooltip
+// hết SERVER_RETURN_TYPING
