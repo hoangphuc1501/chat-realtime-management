@@ -22,18 +22,6 @@ block main
                                 .inner-content 
                                     | #{chat.content}
                         div(class="inner-list-typing")
-                            //- div(class="box-typing")
-                            //-     div(class="inner-name") Le Van A
-                            //-     div(class="inner-dots")
-                            //-         span
-                            //-         span
-                            //-         span
-                            //- div(class="box-typing")
-                            //-     div(class="inner-name") Le Van B
-                            //-     div(class="inner-dots")
-                            //-         span
-                            //-         span
-                            //-         span
                     .inner-foot
                         form(
                             class="inner-form"
@@ -46,7 +34,14 @@ block main
                             )
                             span(class="button-icon btn btn-light mx-1") 
                                 i.fa-regular.fa-face-smile
+                            label(
+                                class="btn btn-light mx-1"
+                                for="file-upload-with-preview-upload-images"
+                            ) 
+                                i.fa-regular.fa-images
                             button
                                 i.fa-solid.fa-paper-plane
                         div(class="tooltip" role="tooltip")
                             emoji-picker(class="light")
+                    .inner-preview-images
+                        div(class="custom-file-container" data-upload-id="upload-images")

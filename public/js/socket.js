@@ -5,16 +5,27 @@ var socket = io();
 // CLIENT_SEND_MESSAGE
 const formChat = document.querySelector(".chat .inner-form");
 if (formChat) {
+    // upload image
+    const upload = new FileUploadWithPreview.FileUploadWithPreview('upload-images', {
+        multiple: true,
+        maxFileCount: 6
+    });
+    
+    // hết upload image
     formChat.addEventListener("submit", (e) => {
         e.preventDefault();
         const content = formChat.content.value;
-        if (content) {
+        const images = upload.cachedFileArray || [];
+        console.log(upload.cachedFileArray)
+        if (content || images.length > 0) {
             const data = {
-                content: content
+                content: content,
+                images: images
             }
             socket.emit("CLIENT_SEND_MESSAGE", data)
 
             formChat.content.value = "";
+            upload.resetPreviewPanel(); // clear all selected images
         }
     })
 }
@@ -96,6 +107,7 @@ if (elementListTyping) {
                     </div>
                 `
                 elementListTyping.appendChild(boxTyping)
+                bodyChat.scrollTop = bodyChat.scrollHeight;
             }
         } else {
             const existBoxTyping = elementListTyping.querySelector(`.box-typing[user-id="${data.userId}"]`);

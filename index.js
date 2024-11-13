@@ -17,7 +17,14 @@ const database = require("./config/database");
 database.connect();
 
 app.use(cookieParser('keyboard cat'));
-app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(session(
+    { cookie: { maxAge: 60000 }},
+    {
+    secret: '15012001', // Đặt secret của bạn ở đây
+    resave: false,
+    saveUninitialized: true,
+}
+));
 app.use(flash());
 
 // khi báo biến toàn cục cho js backend

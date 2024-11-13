@@ -4,22 +4,23 @@ module.exports.index = async (req, res) => {
     _io.once('connection', (socket) => {
         // người dùng gửi tin nhắn lên server
         socket.on("CLIENT_SEND_MESSAGE", async (data) => {
-            const dataChat = {
-                userId:  res.locals.user.id,
-                // roomChatId: String,
-                content: data.content
-                // images: Array
-            }
-            // lưu tin nhắn vào database
-            const chat = new Chat(dataChat);
-            await chat.save();
+            console.log(data.images)
+            // const dataChat = {
+            //     userId:  res.locals.user.id,
+            //     // roomChatId: String,
+            //     content: data.content
+            //     // images: Array
+            // }
+            // // lưu tin nhắn vào database
+            // const chat = new Chat(dataChat);
+            // await chat.save();
 
-            // Trả data về client
-            _io.emit("SERVER_RETURN_MESSAGE", {
-                userId:  res.locals.user.id,
-                fullName: res.locals.user.fullName,
-                content: data.content
-            })
+            // // Trả data về client
+            // _io.emit("SERVER_RETURN_MESSAGE", {
+            //     userId:  res.locals.user.id,
+            //     fullName: res.locals.user.fullName,
+            //     content: data.content
+            // })
         })
         // CLIENT_SEND_TYPING
         socket.on("CLIENT_SEND_TYPING", async (type) => {
