@@ -68,6 +68,7 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
     body.insertBefore(div, elementListTyping) ;
     socket.emit("CLIENT_SEND_TYPING", false);
     body.scrollTop = body.scrollHeight;
+    new Viewer(div)
 })
 // hết SERVER_RETURN_MESSAGE
 
@@ -75,6 +76,9 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
 const bodyChat = document.querySelector(".inner-body");
 if (bodyChat) {
     bodyChat.scrollTop = bodyChat.scrollHeight;
+    // viewerjs
+    new Viewer(bodyChat)
+    // hết viewsjs
 }
 // scroll chat to bottom
 
@@ -136,3 +140,4 @@ if (elementListTyping) {
 }
 
 // hết SERVER_RETURN_TYPING
+
