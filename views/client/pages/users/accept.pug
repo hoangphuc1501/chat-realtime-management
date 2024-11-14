@@ -1,0 +1,32 @@
+extends ../../layouts/default.pug
+block main
+    .container.my-3
+        include ../../partials/list-btn-user.pug
+        .row
+            .col-12
+                h2 #{pageTitle}
+        .row
+            each item in users
+                .col-6
+                    div(class="box-user")
+                        div(class="inner-avatar")
+                            img(
+                                src="https://robohash.org/hicveldicta.png"
+                                alt=item.fullName
+                            )
+                        div(class="inner-info")
+                            div(class="inner-name") #{item.fullName}
+                            div(class="inner-buttons")
+                                button(
+                                    class="btn btn-sm btn-primary me-1"
+                                    btn-accept-friend=item.id
+                                ) Chấp nhận
+                                button(
+                                    class="btn btn-sm btn-secondary me-1"
+                                    btn-refuse-friend=item.id
+                                ) Xóa
+                                button(
+                                    class="btn btn-sm btn-secondary me-1"
+                                    btn-deleted-friend
+                                    disabled
+                                ) Đã gỡ lời mời kết bạn

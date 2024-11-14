@@ -177,3 +177,47 @@ module.exports.request = async (req, res) => {
         users: users
     });
 }
+
+module.exports.accept = async (req, res) => {
+    const userIdA = res.locals.user.id;
+    _io.once("connection", (socket) => {
+        // Khi A từ chối kết bạn của B
+        socket.on("CLIENT_REFUSE_FRIEND", async (userIdB) => {
+            // Xóa id của B trong acceptFriends của A
+            const existBInA = await User.findOne({
+                _id: userIdA,
+                acceptFriends: userIdB
+            });
+            if (existBInA) {
+                await User.updateOne({
+                    _id: userIdA
+                }, {
+                    $pull: { acceptFriends: userIdB }
+                });
+            }
+            // Xóa id của A trong requestFriends của B
+            const existAInB = await User.findOne({
+                _id: userIdB,
+                requestFriends: userIdA
+            });
+            if (existAInB) {
+                await User.updateOne({
+                    _id: userIdB
+                }, {
+                    $pull: { requestFriends: userIdA }
+                });
+            }
+        })
+    })
+
+    const users = await User.find({
+        _id: { $in: res.locals.user.acceptFriends },
+        deleted: false,
+        status: "active"
+    }).select("id fullName avatar");
+
+    res.render("client/pages/users/accept.pug", {
+        pageTitle: "Danh sách lời mời đã nhận",
+        users: users
+    });
+}
