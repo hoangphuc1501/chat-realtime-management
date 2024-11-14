@@ -16,6 +16,7 @@ const io = new Server(server);
 const database = require("./config/database");
 database.connect();
 
+
 app.use(cookieParser('keyboard cat'));
 app.use(session(
     { cookie: { maxAge: 60000 }},

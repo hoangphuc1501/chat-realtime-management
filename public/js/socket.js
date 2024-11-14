@@ -43,9 +43,26 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
         div.classList.add("inner-incoming");
         htmlFullName = `<div class="inner-name">${data.fullName}</div>`;
     }
+
+    let htmlContent = "";
+    if(data.content) {
+        htmlContent = `
+            <div class="inner-content">${data.content}</div>
+        `
+    }
+    let htmlImage = "";
+    if(data.images.length > 0){
+        htmlImage += `<div class="inner-images">`
+        for (const image of data.images) {
+            htmlImage += `<img src="${image}" />`
+        }
+        
+        htmlImage +=`</div>`     
+    }
     div.innerHTML = `
         ${htmlFullName}
-        <div class="inner-content">${data.content}</div>
+        ${htmlContent}
+        ${htmlImage}
     `;
     const elementListTyping = document.querySelector(".chat .inner-list-typing")
     body.insertBefore(div, elementListTyping) ;
