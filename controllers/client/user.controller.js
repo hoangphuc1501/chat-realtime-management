@@ -77,3 +77,18 @@ module.exports.logout = async (req, res) => {
     req.flash("success", "Đăng xuất thành công!");
     res.redirect("/");
 }
+
+module.exports.notFriend = async (req, res) => {
+    const userId = res.locals.user.id
+    const users = await User
+    .find({
+        _id: { $ne: userId }, // $ne: not equal
+        deleted: false,
+        status: "active"
+    })
+    .select("id fullName avatar")
+    res.render("client/pages/users/not-friend.pug",{
+        pageTitle: "Danh sách người dùng",
+        users: users
+    });
+}
