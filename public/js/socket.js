@@ -10,7 +10,7 @@ if (formChat) {
         multiple: true,
         maxFileCount: 6
     });
-    
+
     // hết upload image
     formChat.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -45,19 +45,19 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
     }
 
     let htmlContent = "";
-    if(data.content) {
+    if (data.content) {
         htmlContent = `
             <div class="inner-content">${data.content}</div>
         `
     }
     let htmlImage = "";
-    if(data.images.length > 0){
+    if (data.images.length > 0) {
         htmlImage += `<div class="inner-images">`
         for (const image of data.images) {
             htmlImage += `<img src="${image}" />`
         }
-        
-        htmlImage +=`</div>`     
+
+        htmlImage += `</div>`
     }
     div.innerHTML = `
         ${htmlFullName}
@@ -65,7 +65,7 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
         ${htmlImage}
     `;
     const elementListTyping = document.querySelector(".chat .inner-list-typing")
-    body.insertBefore(div, elementListTyping) ;
+    body.insertBefore(div, elementListTyping);
     socket.emit("CLIENT_SEND_TYPING", false);
     body.scrollTop = body.scrollHeight;
     new Viewer(div)
@@ -132,7 +132,7 @@ if (elementListTyping) {
             }
         } else {
             const existBoxTyping = elementListTyping.querySelector(`.box-typing[user-id="${data.userId}"]`);
-            if(existBoxTyping){
+            if (existBoxTyping) {
                 elementListTyping.removeChild(existBoxTyping);
             }
         }
@@ -141,3 +141,15 @@ if (elementListTyping) {
 
 // hết SERVER_RETURN_TYPING
 
+// kết bạn
+const listBtnAddFriend = document.querySelectorAll("[btn-add-friend]");
+if (listBtnAddFriend.length > 0) {
+    listBtnAddFriend.forEach(button => {
+        button.addEventListener("click", () => {
+            const userIdB = button.getAttribute("btn-add-friend");
+            button.closest(".box-user").classList.add("add");
+            socket.emit("CLIENT_ADD_FRIEND", userIdB);
+        })
+    })
+}
+// hết kết bạn

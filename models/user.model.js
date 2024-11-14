@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema(
         token: String,
         phone: String,
         avatar: String,
+        acceptFriends: Array, // Danh sách những người cần chấp nhận
+        requestFriends: Array, // Danh sách những người đã gửi yêu cầu đi
+        friendsList: Array, // Danh sách bạn bè
         status: String,
         deleted: {
             type: Boolean,
